@@ -1,0 +1,12 @@
+# MATLAB & Simulink temporary / autosave files
+*.asv
+*.m~
+*.slxc
+slprj/
+*.autosave
+*.bak
+
+# OS files
+.DS_Store
+.AppleDouble
+.LSOverride
