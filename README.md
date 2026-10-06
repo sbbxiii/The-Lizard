@@ -1,4 +1,4 @@
-# Maxon DC-max 16 S DC Motor Modeling, Parameter Identification & Multi-Domain Simulation
+# 🦎 The Lizard: Maxon DC Motor Modeling, Parameter Identification & Multi-Domain Simulation
 
 [![Platform: MATLAB](https://img.shields.io/badge/Platform-MATLAB_%7C_Simulink_%7C_Simscape-red.svg?style=flat-square&logo=mathworks)](https://www.mathworks.com/)
 [![Motor: Maxon DC-max 16 S](https://img.shields.io/badge/Motor-Maxon_DC--max_16S_(24V)-blue.svg?style=flat-square)](https://www.maxongroup.com/)
@@ -10,9 +10,9 @@
 
 ## 1. Executive Summary
 
-This repository presents a first-principles electro-mechanical model, analytical transfer function derivation, parameter identification, and multi-domain simulation of the **Maxon DC-max 16 S (24V)** graphite-brushed DC motor.
+**The Lizard** is a first-principles electro-mechanical model, analytical transfer function derivation, parameter identification, and multi-domain simulation suite for the **Maxon DC-max 16 S (24V)** graphite-brushed DC motor.
 
-The model is implemented and cross-validated across **three independent simulation paradigms** in MATLAB & Simulink:
+The motor dynamics are implemented and cross-validated across **three independent simulation paradigms** in MATLAB & Simulink:
 1. **Analytical Transfer Function Model (`SYS1`, `SYS2`, `SYS3` via Model Linearizer)**: Evaluated in the frequency and Laplace $s$-domains.
 2. **Differential Equation Block Diagram Model**: Direct state-variable integration of Kirchhoff’s Voltage Law (KVL) and Newton’s second rotational law.
 3. **Simscape Multi-Domain Physical Network**: A physics-based causal network modeling real-world electrical (current/voltage sensors, reference grounds) and mechanical (rotor inertia, damping, torque loading) domains.
@@ -97,29 +97,30 @@ Because $\tau_m \gg \tau_e$ (ratio $> 235:1$), mechanical inertia dominates the 
 
 | Performance Metric | Datasheet Value | Simulink Block Diagram | Simscape Physical Model | Steady-State Error |
 | :--- | :---: | :---: | :---: | :---: |
-| **No-Load Speed ($\omega_{nl}$)** | $9,920\text{ RPM}$ | $9,919\text{ RPM}$ | $9,909\text{ RPM}$ | **$< 0.11\%$** |
-| **No-Load Current ($I_{nl}$)** | $16.8\text{ mA}$ | $16.4\text{ mA}$ | $16.77\text{ mA}$ | **$< 0.20\%$** |
-| **Nominal Speed ($\omega_n$)** | $6,580\text{ RPM}$ | $6,640\text{ RPM}$ | $6,637\text{ RPM}$ | **$< 0.91\%$** |
-| **Nominal Current ($I_n$)** | $0.227\text{ A}$ | $0.2227\text{ A}$ | $0.2226\text{ A}$ | **$< 1.9\%$** |
-| **Stall Current ($I_s$)** | $0.640\text{ A}$ | $0.6398\text{ A}$ | $0.6394\text{ A}$ | **$< 0.09\%$** |
+| **No-Load Speed (ω_nl)** | 9,920 RPM | 9,919 RPM | 9,909 RPM | **&lt; 0.11%** |
+| **No-Load Current (I_nl)** | 16.8 mA | 16.4 mA | 16.77 mA | **&lt; 0.20%** |
+| **Nominal Speed (ω_n)** | 6,580 RPM | 6,640 RPM | 6,637 RPM | **&lt; 0.91%** |
+| **Nominal Current (I_n)** | 0.227 A | 0.2227 A | 0.2226 A | **&lt; 1.90%** |
+| **Stall Current (I_s)** | 0.640 A | 0.6398 A | 0.6394 A | **&lt; 0.09%** |
 
 ---
 
 ## 6. Dynamic Transient Response Gallery
 
-````carousel
-![Nominal Speed Response](docs/images/nominal_speed_response.png)
-<!-- slide -->
-![Nominal Current Response](docs/images/nominal_current_response.png)
-<!-- slide -->
-![No-Load Speed Response](docs/images/no_load_speed_response.png)
-<!-- slide -->
-![No-Load Current Response](docs/images/no_load_current_response.png)
-<!-- slide -->
-![Stall Current (Block Diagram)](docs/images/stall_current_block_diagram.png)
-<!-- slide -->
-![Stall Current (Simscape)](docs/images/stall_current_simscape.png)
-````
+### Nominal Load Regime (Continuous Rated Operation)
+| Angular Velocity Step Response (6,640 RPM) | Armature Current Transient Response (0.22 A) |
+| :---: | :---: |
+| <img src="docs/images/nominal_speed_response.png" alt="Nominal Speed Response" width="100%"> | <img src="docs/images/nominal_current_response.png" alt="Nominal Current Response" width="100%"> |
+
+### No-Load Regime (Unloaded Idling)
+| No-Load Velocity Steady-State (9,919 RPM) | No-Load Current Idling (16.4 mA) |
+| :---: | :---: |
+| <img src="docs/images/no_load_speed_response.png" alt="No-Load Speed Response" width="100%"> | <img src="docs/images/no_load_current_response.png" alt="No-Load Current Response" width="100%"> |
+
+### Stall Condition Comparison (Peak Torque & Current)
+| Differential Equation Block Diagram Stall Current | Simscape Physical Network Stall Current |
+| :---: | :---: |
+| <img src="docs/images/stall_current_block_diagram.png" alt="Stall Current Block Diagram" width="100%"> | <img src="docs/images/stall_current_simscape.png" alt="Stall Current Simscape" width="100%"> |
 
 ---
 
@@ -148,8 +149,8 @@ Under continuous nominal load operation ($T_n = 4.76\text{ mN}\cdot\text{m}$, $I
 ### Execution Steps
 1. Clone this repository:
    ```bash
-   git clone https://github.com/sbbxiii/Maxon-DC-Motor-Simulation.git
-   cd Maxon-DC-Motor-Simulation
+   git clone https://github.com/sbbxiii/The-Lizard.git
+   cd The-Lizard
    ```
 2. Open MATLAB and navigate to the `simulation/` directory.
 3. Run [`simulation/mainEMD.m`](simulation/mainEMD.m):
@@ -170,7 +171,7 @@ Under continuous nominal load operation ($T_n = 4.76\text{ mN}\cdot\text{m}$, $I
 ## 9. Repository Structure
 
 ```
-Maxon-DC-Motor-Simulation/
+The-Lizard/
 ├── simulation/
 │   ├── mainEMD.m                       # Core MATLAB parameter script & TF derivation
 │   ├── mainEMDmode.slx                 # Simulink & Simscape multi-paradigm model
